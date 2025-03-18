@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Manager</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .container { max-width: 500px; margin: auto; }
+        input, button { margin: 10px; }
+        a { display: block; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <h2>File Manager</h2>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Upload</button>
+    </form>
+    <h3>Uploaded Files</h3>
+    <div class="container">
+        {% for file in files %}
+            <a href="{{ url_for('download_file', filename=file) }}" download>{{ file }}</a>
+        {% endfor %}
+    </div>
+</body>
+</html>
